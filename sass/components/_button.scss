@@ -1,0 +1,65 @@
+/* normal state and visited state */
+.btn {
+    &:link,
+    &:visited {
+        text-transform: uppercase;
+        text-decoration: none;
+        padding: 1.5rem 4rem;
+        display: inline-block;
+        border-radius: 10rem;
+        transition: all .2s;
+        /* reference */
+        position: relative;
+        font-size: 1.6rem;
+    }
+    /* on hover */
+    &:hover {
+        transform: translateY(-3px);
+        /* box-shadow: x y blur rgba(black,transparency (20% opacity)*/
+        box-shadow: 0 1rem 2rem rgba($color-black,.2);
+        &::after {
+            /* scale(2) makes the button twice bigger */
+            transform: scaleX(1.4) scaleY(1.6);
+            /* opacity 0 sets to invisible */
+            opacity: 0;
+        }
+    }
+    /* When clicked */
+    &:active {
+        transform: translateY(-1px);
+        box-shadow: 0 .5rem 1rem rgba($color-black,.2);
+    }
+
+    &--white {
+        background-color: $color-white;
+        color: $color-dark-grey;
+        &::after {
+            background-color: $color-white;
+        }
+    }
+
+    /* sudo elements */
+    &::after {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 100px;
+        /* all after things are absolute, only the top one is relative */
+        position: absolute;
+        top: 0;
+        left: 0;
+        /* position of elements if they are on top of one another z-index: -1 is always behind */
+        z-index: -1;
+        transition: all .4s;
+
+    }
+
+
+    &--animated {
+        /* how slowly moves, fast at the beggining slow at the end, delay */
+        animation: moveInBottom .5s ease-out .75s;
+        /* sets element to none at the beginning */
+        animation-fill-mode: backwards;
+    }
+}
